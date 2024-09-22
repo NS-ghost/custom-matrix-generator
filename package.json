@@ -1,0 +1,36 @@
+{
+  "name": "custom-matrix-generator",
+  "version": "1.0.0",
+  "description": "Biblioteka je osmisljena sa ciljem da korisnicima pruži mogućnost generisanja matrica sa raznim verovatnoćama, obrascima i ograničenjima, kao i izvođenja složenih matematičkih operacija.",
+  "main": "dist/index.js",
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "files": [
+    "/dist"
+  ],
+  "build": "tsc",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NS-ghost/custom-matrix-generator.git"
+  },
+  "keywords": [
+    "matrix",
+    "generator"
+  ],
+  "author": "Dimitrije Manić",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NS-ghost/custom-matrix-generator/issues"
+  },
+  "homepage": "https://github.com/NS-ghost/custom-matrix-generator#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.5"
+  }
+}
