@@ -7,19 +7,14 @@ export function createMatrix(dims: number[]): Matrix<number> {
 }
 
 // Funkcija za generisanje random brojeva
-export function getRandomValue(min?: number, max?: number): number {
-  const maxValue = Number.MAX_SAFE_INTEGER; // Maksimalna vrednost celog broja
-
-  if (min && max) {
-    // Ako su min i max definisani, generiši random broj između njih
-    if (min > max) {
-      throw new Error("min treba da bude manji ili jednak max.");
-    }
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  } else {
-    // Ako min i max nisu definisani, generiši random broj između 0 i Number.MAX_SAFE_INTEGER
-    return Math.floor(Math.random() * (maxValue + 1));
+export function getRandomValue(min: number = 0, max: number = 1000): number {
+  // Ako min i max nisu definisani, koristi podrazumevani opseg
+  if (min > max) {
+    throw new Error("Minimalna vrednost ne može biti veća od maksimalne.");
   }
+
+  // Generiši random broj između min i max (uključivo)
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // Validacija dimenzija matrice
