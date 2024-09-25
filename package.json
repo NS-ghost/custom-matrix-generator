@@ -1,6 +1,6 @@
 {
   "name": "custom-matrix-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Biblioteka je osmisljena sa ciljem da korisnicima pruži mogućnost generisanja matrica sa raznim verovatnoćama, obrascima i ograničenjima, kao i izvođenja složenih matematičkih operacija.",
   "main": "dist/index.js",
   "types": "dist/types.d.ts",
