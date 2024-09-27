@@ -42,8 +42,8 @@ export interface MatrixPatternOptions {
 // Interfejs za uniformnu distribuciju
 export interface UniformDistribution {
   distribution: DistributionType.Uniform;
-  minValue: number;
-  maxValue: number;
+  min: number;
+  max: number;
   wholeNumbers?: boolean;
 }
 
@@ -64,7 +64,7 @@ export interface JsonObject {
  * TYPES
  */
 
-// Definicija rekurzivnog tipa za N-dimenzionalnu matricu
+// Definicija tipa za N-dimenzionalnu matricu
 export type Matrix<T> = T | Matrix<T>[];
 
 // Tip objekta koji određuje tip distribucije i njene parametre
@@ -74,7 +74,7 @@ export type DistributionOptions = UniformDistribution | NormalDistribution;
  * ENUMS
  */
 
-// Definicija enum za tip distribucije
+// Enum za tip distribucije
 export enum DistributionType {
   Uniform = "uniform",
   Normal = "normal",

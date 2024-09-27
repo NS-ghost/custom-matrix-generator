@@ -2,7 +2,7 @@ import { Matrix } from "./types";
 
 // Funkcija za kreiranje matrice sa zadatim dimenzijama
 export function createMatrix(dims: number[]): Matrix<number> {
-  if (dims.length === 0) return 0 as any;
+  if (dims.length === 0) return 0 as number;
   return Array.from({ length: dims[0] }, () => createMatrix(dims.slice(1)));
 }
 
@@ -15,20 +15,6 @@ export function getRandomValue(min: number = 0, max: number = 1000): number {
 
   // Generiši random broj između min i max (uključivo)
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Validacija dimenzija matrice
-export function validateMatrixDimensions(dimensions: number[]): void {
-  if (dimensions.length === 0) {
-    throw new Error("Dimenzije matrice moraju biti navedene.");
-  }
-  dimensions.forEach((dim, index) => {
-    if (!Number.isInteger(dim) || dim <= 0) {
-      throw new Error(
-        `Dimenzija na indeksu ${index} mora biti pozitivan ceo broj.`
-      );
-    }
-  });
 }
 
 // Funkcija za validaciju normalnih parametara
@@ -45,6 +31,7 @@ export function validateNormalDistributionParams(
 }
 
 // Funkcija za generisanje uniformnih brojeva
+// Ista ko i getRandomValue(), korisnik mora da posalje parametar za cele brojeve
 export function randomUniformNumbers(
   min: number,
   max: number,

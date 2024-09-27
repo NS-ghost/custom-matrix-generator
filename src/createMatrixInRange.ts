@@ -1,5 +1,5 @@
-import { Matrix } from "./types";
-import { validateMatrixDimensions } from "./utils";
+import { Matrix, MatrixInRange } from "./types";
+import { getRandomValue } from "./utils";
 
 /**
  * Funkcija za kreiranje N-dimenzionalne matrice sa vrednostima iz datog raspona.
@@ -10,22 +10,15 @@ import { validateMatrixDimensions } from "./utils";
  * @returns {Matrix<number>} - N-dimenzionalna matrica sa nasumično generisanim brojevima iz zadatog raspona.
  *
  */
-export function createMatrixInRange({ dimensions, range }): Matrix<number> {
-  validateMatrixDimensions(dimensions);
-
+export function createMatrixInRange({
+  dimensions,
+  range,
+}: MatrixInRange): Matrix<number> {
   const [min, max] = range;
-  if (min > max) {
-    throw new Error("Minimalna vrednost ne može biti veća od maksimalne.");
-  }
-
-  // Funkcija za generisanje nasumične vrednosti iz raspona
-  const generateValue = (): number => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
 
   // Rekurzivna funkcija za kreiranje matrice
   function populateMatrix(dimensions: number[]): Matrix<number> {
-    if (dimensions.length === 0) return generateValue();
+    if (dimensions.length === 0) return getRandomValue(min, max);
     return Array.from({ length: dimensions[0] }, () =>
       populateMatrix(dimensions.slice(1))
     );

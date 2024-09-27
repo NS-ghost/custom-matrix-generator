@@ -8,7 +8,6 @@ import {
   createMatrix,
   randomNormalNumbers,
   randomUniformNumbers,
-  validateMatrixDimensions,
   validateNormalDistributionParams,
 } from "./utils";
 
@@ -29,13 +28,10 @@ export function createMatrixByDistribution({
   dimensions,
   options,
 }: MatrixByDistribution): Matrix<number> {
-  // Validacija dimenzija matrice
-  validateMatrixDimensions(dimensions);
-
   // Kreiranje matrice strukture
   const matrix: Matrix<number> = createMatrix(dimensions);
 
-  // Pomoćna funkcija za popunjavanje matrice
+  // Popunjavanje matrice
   const populateMatrix = (
     matrix: Matrix<number>,
     options: DistributionOptions
@@ -45,8 +41,8 @@ export function createMatrixByDistribution({
     } else {
       if (options.distribution === DistributionType.Uniform) {
         return randomUniformNumbers(
-          options.minValue,
-          options.maxValue,
+          options.min,
+          options.max,
           options.wholeNumbers ?? false
         );
       } else if (options.distribution === DistributionType.Normal) {

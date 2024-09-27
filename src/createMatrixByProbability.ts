@@ -1,9 +1,5 @@
 import { Matrix, MatrixByProbability } from "./types";
-import {
-  createMatrix,
-  getRandomValue,
-  validateMatrixDimensions,
-} from "./utils";
+import { createMatrix, getRandomValue } from "./utils";
 
 /**
  * Kreira n-dimenzionalnu matricu sa vrednostima koje su odabrane na osnovu verovatnoće ili proizvoljnih vrednosti.
@@ -26,9 +22,6 @@ export function createMatrixByProbability({
   min,
   max,
 }: MatrixByProbability): Matrix<number> {
-  // Validacija dimenzija matrice
-  validateMatrixDimensions(dimensions);
-
   // Provera da li su nizovi vrednosti i verovatnoće prisutni zajedno
   if ((values && !probabilities) || (!values && probabilities)) {
     throw new Error(
@@ -63,14 +56,14 @@ export function createMatrixByProbability({
     if (index === dims.length) {
       // Kada stignemo do kraja dimenzija, popunjavamo vrednost
       if (values && probabilities) {
-        const rand = Math.random();
+        const randomNumber = Math.random();
 
         let cumulativeProbability = 0;
         let selectedValue = getRandomValue(min, max);
 
         for (let i = 0; i < values.length; i++) {
           cumulativeProbability += probabilities[i];
-          if (rand < cumulativeProbability) {
+          if (randomNumber < cumulativeProbability) {
             selectedValue = values[i];
             break;
           }

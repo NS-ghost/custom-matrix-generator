@@ -1,9 +1,5 @@
-import { Matrix, MatrixPatternOptions, MatrixWithPattern } from "./types";
-import {
-  createMatrix,
-  getRandomValue,
-  validateMatrixDimensions,
-} from "./utils";
+import { createMatrixInRange } from "./createMatrixInRange";
+import { Matrix, MatrixInRange, MatrixWithPattern } from "./types";
 
 /**
  * Funkcija za kreiranje matrice sa zadatim dimenzijama i obrazcem.
@@ -29,25 +25,12 @@ export function createMatrixWithPattern({
   min,
   max,
 }: MatrixWithPattern): Matrix<number> {
-  // Validacija dimenzija matrice
-  validateMatrixDimensions(dimensions);
-
-  let matrix = createMatrix(dimensions);
-
-  // Popuni matricu random vrednostima
-  const populateMatrix = (matrix: Matrix<number>, depth = 0) => {
-    if (depth === dimensions.length - 1 && Array.isArray(matrix)) {
-      for (let i = 0; i < dimensions[depth]; i++) {
-        (matrix as number[])[i] = getRandomValue(min, max);
-      }
-    } else if (Array.isArray(matrix)) {
-      for (let i = 0; i < dimensions[depth]; i++) {
-        populateMatrix(matrix[i] as Matrix<number>, depth + 1);
-      }
-    }
+  //Kreiramo popunjenu matricu sa nasumičnim vrednostima u poslatom rasponu
+  const matrixInRange: MatrixInRange = {
+    dimensions: dimensions,
+    range: [min, max],
   };
-
-  populateMatrix(matrix);
+  let matrix = createMatrixInRange(matrixInRange);
 
   // Postavi definisanu vrednost na gornju dijagonalu prema šablonu
   if (options.pattern === "upper-diagonal") {

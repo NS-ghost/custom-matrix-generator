@@ -79,12 +79,17 @@ Funkcija `createMatrixWithPattern` kreira matricu sa zadatim dimenzijama i nasum
 ```typescript
 // Kreiraj matricu 4x4 sa nasumičnim vrednostima između 1 i 10, popuni gornju dijagonalu sa vrednošću 5
 const dimensions = [4, 4];
-const options = { pattern: "upper-diagonal", value: 5 };
+const options: MatrixPatternOptions = {
+  pattern: "lower-diagonal",
+  value: 5,
+  row: 2,
+  col: 3,
+};
 const randomMatrix = createMatrixWithPattern({
   dimensions,
   options,
   min: 1,
-  max: 10,
+  max: 9,
 });
 ```
 
@@ -103,9 +108,9 @@ Funkcija `createMatrixByDistribution` kreira N-dimenzionalnu matricu sa nasumič
   Objekat koji definiše opcije distribucije:
   - **distribution**: `'Uniform' | 'Normal'`  
     Tip distribucije koji će se koristiti.
-  - **minValue**: `number` (za uniformnu distribuciju)  
+  - **min**: `number` (za uniformnu distribuciju)  
     Minimalna vrednost za nasumične brojeve kada je distribucija `'Uniform'`.
-  - **maxValue**: `number` (za uniformnu distribuciju)  
+  - **max**: `number` (za uniformnu distribuciju)  
     Maksimalna vrednost za nasumične brojeve kada je distribucija `'Uniform'`.
   - **mean**: `number` (za normalnu distribuciju)  
     Srednja vrednost (mean) za nasumične brojeve kada je distribucija `'Normal'`.
@@ -121,17 +126,21 @@ Funkcija `createMatrixByDistribution` kreira N-dimenzionalnu matricu sa nasumič
 ```typescript
 // Kreiraj matricu 3x3 sa nasumičnim vrednostima između 1 i 10, u uniformnoj distribuciji
 const dimensions = [3, 3];
-const options = {
-  distribution: "Uniform",
-  minValue: 1,
-  maxValue: 10,
+const options: UniformDistribution = {
+  distribution: DistributionType.Uniform,
+  min: 1,
+  max: 10,
   wholeNumbers: true,
 };
 const uniformMatrix = createMatrixByDistribution({ dimensions, options });
 
 // Kreiraj 4x4 matricu sa normalnom distribucijom (mean: 0, stdDev: 1)
 const dimensions = [4, 4];
-const options = { distribution: "Normal", mean: 0, stdDev: 1 };
+const options: NormalDistribution = {
+  distribution: DistributionType.Normal,
+  mean: 0,
+  stdDev: 1,
+};
 const normalMatrix = createMatrixByDistribution({ dimensions, options });
 ```
 
