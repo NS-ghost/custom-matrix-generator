@@ -22,14 +22,12 @@ export function createMatrixByProbability({
   min,
   max,
 }: MatrixByProbability): Matrix<number> {
-  // Provera da li su nizovi vrednosti i verovatnoće prisutni zajedno
   if ((values && !probabilities) || (!values && probabilities)) {
     throw new Error(
       "Ako su prisutni values, onda moraju biti prisutni i probabilities, i obrnuto."
     );
   }
 
-  // Provera da li su nizovi vrednosti i verovatnoće iste dužine.
   if (values && probabilities) {
     if (values.length !== probabilities.length) {
       throw new Error(
@@ -37,24 +35,20 @@ export function createMatrixByProbability({
       );
     }
 
-    // Provera da li je ukupna verovatnoca veća od 1
     const totalProbability = probabilities.reduce((sum, p) => sum + p, 0);
     if (totalProbability > 1) {
       throw new Error("Ukupna verovatnoće ne mogže biti veća od 1.");
     }
   }
 
-  // Kreiranje matrice
   const matrix = createMatrix(dimensions);
 
-  // Funkcija za popunjavanje matrice
   const populateMatrix = (
     mat: Matrix<number>,
     dims: number[],
     index: number
   ): Matrix<number> => {
     if (index === dims.length) {
-      // Kada stignemo do kraja dimenzija, popunjavamo vrednost
       if (values && probabilities) {
         const randomNumber = Math.random();
 

@@ -18,42 +18,36 @@ import { Matrix, MatrixInRange, MatrixWithPattern } from "./types";
  *                              postavljenim vrednostima prema datim opcijama.
  */
 
-// Funkcija za kreiranje matrice sa obrazcem
 export function createMatrixWithPattern({
   dimensions,
   options,
   min,
   max,
 }: MatrixWithPattern): Matrix<number> {
-  //Kreiramo popunjenu matricu sa nasumičnim vrednostima u poslatom rasponu
   const matrixInRange: MatrixInRange = {
     dimensions: dimensions,
     range: [min, max],
   };
   let matrix = createMatrixInRange(matrixInRange);
 
-  // Postavi definisanu vrednost na gornju dijagonalu prema šablonu
   if (options.pattern === "upper-diagonal") {
     for (let i = 0; i < dimensions[0]; i++) {
       (matrix as number[][])[i][i] = options.value;
     }
   }
 
-  // Postavi definisanu vrednost na donju dijagonalu prema šablonu
   if (options.pattern === "lower-diagonal") {
     for (let i = 0; i < dimensions[0]; i++) {
       (matrix as number[][])[i][dimensions[0] - 1 - i] = options.value;
     }
   }
 
-  // Popuni zadati red sa definisanom vrednošću
   if (options.row !== undefined && Array.isArray(matrix)) {
     for (let i = 0; i < dimensions[1]; i++) {
       (matrix[options.row] as number[])[i] = options.value; // Popuni ceo red
     }
   }
 
-  // Popuni zadatu kolonu sa definisanom vrednošću
   if (options.col !== undefined && Array.isArray(matrix)) {
     for (let i = 0; i < dimensions[0]; i++) {
       (matrix[i] as number[])[options.col] = options.value; // Popuni celu kolonu

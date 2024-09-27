@@ -16,7 +16,6 @@ export function createMatrixInRange({
 }: MatrixInRange): Matrix<number> {
   const [min, max] = range;
 
-  // Rekurzivna funkcija za kreiranje matrice
   function populateMatrix(dimensions: number[]): Matrix<number> {
     if (dimensions.length === 0) return getRandomValue(min, max);
     return Array.from({ length: dimensions[0] }, () =>

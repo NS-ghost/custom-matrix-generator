@@ -23,15 +23,12 @@ import {
  * @returns {Matrix<number>} - Matrica popunjena nasumično generisanim brojevima u skladu sa zadatom distribucijom.
  */
 
-// Glavna funkcija za kreiranje i popunjavanje matrice na osnovu distribucije
 export function createMatrixByDistribution({
   dimensions,
   options,
 }: MatrixByDistribution): Matrix<number> {
-  // Kreiranje matrice strukture
   const matrix: Matrix<number> = createMatrix(dimensions);
 
-  // Popunjavanje matrice
   const populateMatrix = (
     matrix: Matrix<number>,
     options: DistributionOptions
@@ -46,7 +43,6 @@ export function createMatrixByDistribution({
           options.wholeNumbers ?? false
         );
       } else if (options.distribution === DistributionType.Normal) {
-        // Validaciju normalnih parametara
         validateNormalDistributionParams(options.mean, options.stdDev);
         return randomNormalNumbers(
           options.mean,
@@ -59,6 +55,5 @@ export function createMatrixByDistribution({
     }
   };
 
-  // Popunjavanje matrice generisanim vrednostima
   return populateMatrix(matrix, options);
 }
